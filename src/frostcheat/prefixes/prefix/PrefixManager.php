@@ -6,7 +6,6 @@ use frostcheat\prefixes\Prefixes;
 use pocketmine\permission\DefaultPermissions;
 use pocketmine\permission\Permission;
 use pocketmine\permission\PermissionManager;
-use pocketmine\scheduler\ClosureTask;
 
 class PrefixManager
 {

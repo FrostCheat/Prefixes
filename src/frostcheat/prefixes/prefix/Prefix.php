@@ -5,8 +5,8 @@ namespace frostcheat\prefixes\prefix;
 class Prefix
 {
     private string $name;
-    private ?string $format = null;
-    private ?string $permission = null;
+    private ?string $format;
+    private ?string $permission;
 
     public function __construct(string $name, array $data)
     {
@@ -32,10 +32,9 @@ class Prefix
 
     public function getData(): array
     {
-        $data = [
+        return [
             'format' => $this->getFormat(),
             'permission' => $this->getPermission()
         ];
-        return $data;
     }
 }

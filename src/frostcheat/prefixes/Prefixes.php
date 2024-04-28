@@ -46,6 +46,11 @@ class Prefixes extends PluginBase
         $this->registerListeners([new EventListener()]);
         $this->getServer()->getCommandMap()->register("Prefixes", new PrefixCommand($this));
         $this->getServer()->getCommandMap()->register("Prefixes", new PrefixesCommand($this));
+
+        if ($this->getConfig()->getNested("config-version", 2) === 1) {
+            $this->getLogger()->critical("The configuration is not the same, you must use an updated configuration to be able to use this plugin");
+            $this->getServer()->getPluginManager()->disablePlugin($this);
+        }
     }
 
     public function onDisable(): void

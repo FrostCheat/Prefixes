@@ -1,8 +1,15 @@
 # Don't touch this setting it may break the entire plugin
-config-version: 1
-
-# This is the placeholder by which your prefix in the chat will be replaced RankSystem Supports
-prefix-replace: "{prefix}"
+config-version: 2
 
 prefix-max-characters-name: 10
 prefix-max-characters-format: 20
+
+# If this option is "true" it means that you will use the RankSystem plugin to display the prefix.
+# If this option is "false" it means that you will use the chat format of this Plugin.
+# If you change the RankSystem placeholder you must restart the server
+# Remember that for it to work in the RankSystem configuration it must be between {}, example {prefix}
+rank-system-chat: false
+rank-system-prefix-placeholder: "prefix"
+
+# Chat Format of this plugin (rank-system-chat must be "false")
+chat-format: "%prefix% &7%name%: &f%message%"
