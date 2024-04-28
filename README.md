@@ -47,13 +47,12 @@ Don't touch this setting it may break the entire plugin
 # Permissions
 
 - prefixes.command - default
-- prefix.command - op
-- prefix.command.set - op
-- prefix.command.remove - op
-- prefix.command.delete - op
-- prefix.command.reload - op
-- prefix.command.create - op
-- prefix.command.help - op
+- prefixes.command.set - op
+- prefixes.command.remove - op
+- prefixes.command.delete - op
+- prefixes.command.reload - op
+- prefixes.command.create - op
+- prefixes.command.help - op
 
 # Features
 
