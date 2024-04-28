@@ -1,0 +1,29 @@
+plugin-prefix: "&7[&cPrefixes&7]&r"
+
+no-permission-command-message: "%plugin-prefix% &cYou do not have permission to run this command"
+no-command-found: "%plugin-prefix% &cNo subcommand provided, try using: /prefix help"
+plugin-reload: "%plugin-prefix% &cYou can't send messages while prefixes are loading, wait a moment"
+plugin-reload-message: "%plugin-prefix% &aYou have reloaded the plugin configuration, wait a few seconds for the changes to be applied"
+
+prefix-already-exists: "%plugin-prefix% &cA prefix already exists with this name"
+prefix-max-characters-name: "%plugin-prefix% &cThe prefix name cannot contain more than %max-characters-name% characters in name"
+prefix-max-characters-format: "%plugin-prefix% &cThe prefix name cannot contain more than %max-characters-format% characters in format"
+prefix-no-spaces-name: "%plugin-prefix% &cThe prefix name cannot contain spaces"
+prefix-no-spaces-format: "%plugin-prefix% &cThe prefix format cannot contain spaces"
+prefix-succesfuly-created: "%plugin-prefix% &aYou have created the prefix %prefix-name%"
+
+prefix-set-no-player: "%plugin-prefix% &cThe player has not joined the server, or you have the wrong name"
+prefix-set-no-prefix-exists: "%plugin-prefix% &cPrefix %prefix-name% does not exist"
+prefix-set-succesfuly: "%plugin-prefix% &aYou have given the prefix %prefix-name% to %player%"
+
+player-remove-succesfuly: "%plugin-prefix% &aYou just removed the prefix %prefix-name% from %player%"
+player-remove-player-no-prefix: "%plugin-prefix% &cPlayer %player% does not have a prefix"
+
+prefix-delete-no-exists: "%plugin-prefix% &cThe prefix %prefix-name% non exists"
+prefix-delete-succesfuly: "%plugin-prefix% &aThe prefix %prefix-name% has been deleted"
+
+player-sets-prefix-succesfuly: "%plugin-prefix% &aYou have set the prefix %prefix%"
+player-sets-prefix-no-permission: "%plugin-prefix% &cYou do not have permission to use this prefix"
+
+player-no-prefix: "%plugin-prefix% &cYou don't have any prefix"
+player-prefix: "%plugin-prefix% &aYour prefix is: %prefix-format%"

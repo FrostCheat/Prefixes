@@ -1,0 +1,8 @@
+# Don't touch this setting it may break the entire plugin
+config-version: 1
+
+# This is the placeholder by which your prefix in the chat will be replaced RankSystem Supports
+prefix-replace: "{prefix}"
+
+prefix-max-characters-name: 10
+prefix-max-characters-format: 20

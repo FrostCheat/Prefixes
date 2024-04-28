@@ -1,0 +1,23 @@
+name: Prefixes
+version: 1.0.0
+main: frostcheat\prefixes\Prefixes
+author: FrostCheat
+website: http://www.aquamcpe.xyz/
+api: 5.0.0
+description: Plugin de prefixes para tus usuarios
+
+permissions:
+  prefixes.command:
+    default: true
+  prefixes.command.help:
+    default: op
+  prefixes.command.create:
+    default: op
+  prefixes.command.reload:
+    default: op
+  prefixes.command.set:
+    default: op
+  prefixes.command.remove:
+    default: op
+  prefixes.command.delete:
+    default: op
