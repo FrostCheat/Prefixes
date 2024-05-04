@@ -53,7 +53,7 @@ interface IRunnable {
 	/**
 	 * @return string[]
 	 */
-    public function getPermissions(): array;
+    public function getPermissions() : array;
 
     /**
      * @return BaseConstraint[]

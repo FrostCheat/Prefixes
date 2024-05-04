@@ -4,7 +4,10 @@ namespace frostcheat\prefixes;
 
 use frostcheat\prefixes\command\PrefixCommand;
 use frostcheat\prefixes\command\PrefixesCommand;
+use frostcheat\prefixes\language\LanguageManager;
 use frostcheat\prefixes\libs\CortexPE\Commando\PacketHooker;
+use frostcheat\prefixes\libs\JackMD\ConfigUpdater\ConfigUpdater;
+use frostcheat\prefixes\libs\JackMD\UpdateNotifier\UpdateNotifier;
 use frostcheat\prefixes\libs\muqsit\invmenu\InvMenuHandler;
 use frostcheat\prefixes\prefix\PrefixManager;
 use frostcheat\prefixes\provider\Provider;
@@ -12,25 +15,30 @@ use frostcheat\prefixes\session\SessionManager;
 use pocketmine\event\Listener;
 use pocketmine\plugin\PluginBase;
 use pocketmine\scheduler\ClosureTask;
+use pocketmine\utils\SingletonTrait;
 
 class Prefixes extends PluginBase
 {
-    public static Prefixes $instance;
+    use SingletonTrait;
+    public const CONFIG_VERSION = 3;
+
     private bool $charge = false;
-    private Provider $provider;
-    private PrefixManager $prefixManager;
-    private SessionManager $sessionManager;
 
     protected function onLoad(): void
     {
-        self::$instance = $this;
+        self::setInstance($this);
+        Provider::getInstance()->load();
+        SessionManager::getInstance()->load();
+        LanguageManager::getInstance()->load();
+        PrefixManager::getInstance()->load();
     }
 
     public function onEnable(): void
     {
-        $this->provider = new Provider();
-        $this->prefixManager = new PrefixManager();
-        $this->sessionManager = new SessionManager();
+        UpdateNotifier::checkUpdate($this->getDescription()->getName(), $this->getDescription()->getVersion());
+        if (ConfigUpdater::checkUpdate($this, $this->getConfig(), "config-version", self::CONFIG_VERSION)) {
+            $this->reloadConfig();
+        }
 
         if (!PacketHooker::isRegistered())
             PacketHooker::register($this);
@@ -46,11 +54,6 @@ class Prefixes extends PluginBase
         $this->registerListeners([new EventListener()]);
         $this->getServer()->getCommandMap()->register("Prefixes", new PrefixCommand($this));
         $this->getServer()->getCommandMap()->register("Prefixes", new PrefixesCommand($this));
-
-        if ($this->getConfig()->getNested("config-version", 2) === 1) {
-            $this->getLogger()->critical("The configuration is not the same, you must use an updated configuration to be able to use this plugin");
-            $this->getServer()->getPluginManager()->disablePlugin($this);
-        }
     }
 
     public function onDisable(): void
@@ -77,17 +80,12 @@ class Prefixes extends PluginBase
 
     }
 
-    public static function getInstance(): Prefixes
-    {
-        return self::$instance;
-    }
-
     /**
      * @return Provider
      */
     public function getProvider(): Provider
     {
-        return $this->provider;
+        return Provider::getInstance();
     }
 
     /**
@@ -95,7 +93,7 @@ class Prefixes extends PluginBase
      */
     public function getPrefixManager(): PrefixManager
     {
-        return $this->prefixManager;
+        return PrefixManager::getInstance();
     }
 
     /**
@@ -103,7 +101,15 @@ class Prefixes extends PluginBase
      */
     public function getSessionManager(): SessionManager
     {
-        return $this->sessionManager;
+        return SessionManager::getInstance();
+    }
+
+    /**
+     * @return LanguageManager
+     */
+    public function getLanguageManager(): LanguageManager
+    {
+        return LanguageManager::getInstance();
     }
 
     public function isCharge(): bool

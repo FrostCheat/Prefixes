@@ -12,6 +12,8 @@
   </component>
   <component name="PhpIncludePathManager">
     <include_path>
+      <path value="$PROJECT_DIR$/../../../../../../Pocketmine-MP/src" />
+      <path value="$PROJECT_DIR$/../../../../../../Pocketmine-MP/vendor" />
       <path value="$PROJECT_DIR$/../../../../../../../Pocketmine-MP/src" />
       <path value="$PROJECT_DIR$/../../../../../../../Pocketmine-MP/vendor" />
     </include_path>

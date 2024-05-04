@@ -6,17 +6,20 @@ use frostcheat\prefixes\Prefixes;
 use IvanCraft623\RankSystem\RankSystem;
 use IvanCraft623\RankSystem\tag\Tag;
 use IvanCraft623\RankSystem\session\Session as RankSession;
+use pocketmine\utils\SingletonTrait;
 use pocketmine\utils\TextFormat;
 
 class SessionManager
 {
+    use SingletonTrait;
+
     /** @var Session[] */
     private array $sessions = [];
 
     /**
      * SessionManager construct.
      */
-    public function __construct()
+    public function load(): void
     {
         # Register players
         foreach (Prefixes::getInstance()->getProvider()->getSessions() as $uuid => $data)

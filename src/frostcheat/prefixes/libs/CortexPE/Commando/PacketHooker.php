@@ -29,10 +29,11 @@ declare(strict_types=1);
 
 namespace frostcheat\prefixes\libs\CortexPE\Commando;
 
+
 use frostcheat\prefixes\libs\CortexPE\Commando\exception\HookAlreadyRegistered;
+use frostcheat\prefixes\libs\CortexPE\Commando\libs\muqsit\simplepackethandler\SimplePacketHandler;
 use frostcheat\prefixes\libs\CortexPE\Commando\store\SoftEnumStore;
 use frostcheat\prefixes\libs\CortexPE\Commando\traits\IArgumentable;
-use frostcheat\prefixes\libs\muqsit\simplepackethandler\SimplePacketHandler;
 use pocketmine\command\CommandSender;
 use pocketmine\event\EventPriority;
 use pocketmine\event\Listener;
@@ -44,12 +45,10 @@ use pocketmine\network\mcpe\protocol\types\command\CommandParameter;
 use pocketmine\plugin\Plugin;
 use pocketmine\Server;
 use ReflectionClass;
-use function count;
 
 class PacketHooker implements Listener {
 	/** @var bool */
 	private static bool $isRegistered = false;
-
 	/** @var bool */
 	private static bool $isIntercepting = false;
 
@@ -61,7 +60,8 @@ class PacketHooker implements Listener {
 		if(self::$isRegistered) {
 			throw new HookAlreadyRegistered("Event listener is already registered by another plugin.");
 		}
-		$interceptor = SimplePacketHandler::createInterceptor($registrant, EventPriority::HIGHEST, false);
+
+		$interceptor = SimplePacketHandler::createInterceptor($registrant, EventPriority::NORMAL, false);
 		$interceptor->interceptOutgoing(function(AvailableCommandsPacket $pk, NetworkSession $target) : bool{
 			if(self::$isIntercepting)return true;
 			$p = $target->getPlayer();
@@ -110,7 +110,7 @@ class PacketHooker implements Listener {
 			$scParam->isOptional = false;
 			$scParam->enum = new CommandEnum($label, [$label]);
 
-			$overloadList = self::generateOverloads($cs, $subCommand);
+			$overloadList = self::generateOverloadList($subCommand);
 			if(!empty($overloadList)){
 				foreach($overloadList as $overload) {
 					$overloads[] = new CommandOverload(false, [$scParam, ...$overload->getParameters()]);
@@ -144,9 +144,9 @@ class PacketHooker implements Listener {
 			/** @var CommandParameter[] $set */
 			$set = [];
 			foreach($indexes as $k => $index){
-			   	$param = $set[$k] = clone $input[$k][$index]->getNetworkParameterData();
-			
-				if (isset($param->enum) && $param->enum instanceof CommandEnum) {
+				$param = $set[$k] = clone $input[$k][$index]->getNetworkParameterData();
+
+				if(isset($param->enum) && $param->enum instanceof CommandEnum){
 					$refClass = new ReflectionClass(CommandEnum::class);
 					$refProp = $refClass->getProperty("enumName");
 					$refProp->setAccessible(true);

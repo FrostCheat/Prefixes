@@ -34,7 +34,7 @@ use frostcheat\prefixes\libs\CortexPE\Commando\args\BaseArgument;
 use pocketmine\command\CommandSender;
 
 interface IArgumentable {
-	public function generateUsageMessage(string $parent = ""): string;
+	public function generateUsageMessage(): string;
 	public function hasArguments(): bool;
 
 	/**

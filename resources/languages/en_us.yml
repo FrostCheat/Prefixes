@@ -4,16 +4,17 @@ no-permission-command-message: "%plugin-prefix% &cYou do not have permission to 
 no-command-found: "%plugin-prefix% &cNo subcommand provided, try using: /prefix help"
 plugin-reload: "%plugin-prefix% &cYou can't send messages while prefixes are loading, wait a moment"
 plugin-reload-message: "%plugin-prefix% &aYou have reloaded the plugin configuration, wait a few seconds for the changes to be applied"
+plugin-save-message: "%plugin-prefix% &aPrefixes and sessions have been saved correctly"
 
 prefix-already-exists: "%plugin-prefix% &cA prefix already exists with this name"
 prefix-max-characters-name: "%plugin-prefix% &cThe prefix name cannot contain more than %max-characters-name% characters in name"
 prefix-max-characters-format: "%plugin-prefix% &cThe prefix name cannot contain more than %max-characters-format% characters in format"
 prefix-no-spaces-name: "%plugin-prefix% &cThe prefix name cannot contain spaces"
 prefix-no-spaces-format: "%plugin-prefix% &cThe prefix format cannot contain spaces"
-prefix-succesfuly-created: "%plugin-prefix% &aYou have created the prefix %prefix-name%"
+prefix-succesfuly-created: "%plugin-prefix% &aThe prefix has been created successfully"
 
 prefix-set-no-player: "%plugin-prefix% &cThe player has not joined the server, or you have the wrong name"
-prefix-set-no-prefix-exists: "%plugin-prefix% &cPrefix %prefix-name% does not exist"
+prefix-set-no-prefix-exists: "%plugin-prefix% &cPrefix does not exist"
 prefix-set-succesfuly: "%plugin-prefix% &aYou have given the prefix %prefix-name% to %player%"
 
 player-remove-succesfuly: "%plugin-prefix% &aYou just removed the prefix %prefix-name% from %player%"
@@ -24,6 +25,17 @@ prefix-delete-succesfuly: "%plugin-prefix% &aThe prefix %prefix-name% has been d
 
 player-sets-prefix-succesfuly: "%plugin-prefix% &aYou have set the prefix %prefix%"
 player-sets-prefix-no-permission: "%plugin-prefix% &cYou do not have permission to use this prefix"
+
+player-spawnentity-prefix: "%plugin-prefix% &aYou have placed the Entity prefix"
+
+player-gui-remove-prefix-succesfuly: "%plugin-prefix% &aYou have successfully removed your prefix"
+player-gui-remove-prefix-error: "%plugin-prefix% &cYour prefix could not be removed, because you do not have any prefix equipped"
+player-prefix-mode-no-int: "%plugin-prefix% &cYou have not sent a valid message or valid number, the message must be a number between 0-53"
+
+player-prefix-mode-error: "%plugin-prefix% &cYou have canceled the creation of the prefix"
+player-prefix-mode-guide: "%plugin-prefix% &aType the Slot number where the prefix will be in the Inventory between 0-53, or type 'cancel' to cancel the creation of the prefix"
+
+player-setlanguage-succesfuly: "%plugin-prefix% &aThe language %language% has been placed, default: %default%"
 
 player-no-prefix: "%plugin-prefix% &cYou don't have any prefix"
 player-prefix: "%plugin-prefix% &aYour prefix is: %prefix-format%"

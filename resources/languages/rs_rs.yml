@@ -1,0 +1,41 @@
+plugin-prefix: "&7[&cПрефиксы&7]&r"
+
+no-permission-command-message: "%plugin-prefix% &cУ вас нет разрешения на выполнение этой команды"
+no-command-found: "%plugin-prefix% &cНе указан подкоманда, попробуйте использовать: /prefix help"
+plugin-reload: "%plugin-prefix% &cВы не можете отправлять сообщения, пока префиксы загружаются, подождите немного"
+plugin-reload-message: "%plugin-prefix% &aВы перезагрузили конфигурацию плагина, подождите несколько секунд, чтобы изменения вступили в силу"
+plugin-save-message: "%plugin-prefix% &aПрефиксы и сеансы были успешно сохранены"
+
+prefix-already-exists: "%plugin-prefix% &cПрефикс с таким именем уже существует"
+prefix-max-characters-name: "%plugin-prefix% &cИмя префикса не может содержать более %max-characters-name% символов"
+prefix-max-characters-format: "%plugin-prefix% &cИмя префикса не может содержать более %max-characters-format% символов в формате"
+prefix-no-spaces-name: "%plugin-prefix% &cИмя префикса не может содержать пробелы"
+prefix-no-spaces-format: "%plugin-prefix% &cФормат префикса не может содержать пробелы"
+prefix-succesfuly-created: "%plugin-prefix% &aПрефикс был успешно создан"
+
+prefix-set-no-player: "%plugin-prefix% &cИгрок не присоединился к серверу или вы ввели неверное имя"
+prefix-set-no-prefix-exists: "%plugin-prefix% &cПрефикс %prefix-name% не существует"
+prefix-set-succesfuly: "%plugin-prefix% &aВы присвоили префикс %prefix-name% игроку %player%"
+
+player-remove-succesfuly: "%plugin-prefix% &aВы только что удалили префикс %prefix-name% у игрока %player%"
+player-remove-player-no-prefix: "%plugin-prefix% &cУ игрока %player% нет префикса"
+
+prefix-delete-no-exists: "%plugin-prefix% &cПрефикс %prefix-name% не существует"
+prefix-delete-succesfuly: "%plugin-prefix% &aПрефикс %prefix-name% был удален"
+
+player-sets-prefix-succesfuly: "%plugin-prefix% &aВы успешно установили префикс %prefix%"
+player-sets-prefix-no-permission: "%plugin-prefix% &cУ вас нет разрешения использовать этот префикс"
+
+player-spawnentity-prefix: "%plugin-prefix% &aВы разместили префикс сущности"
+
+player-gui-remove-prefix-succesfuly: "%plugin-prefix% &aВы успешно удалили свой префикс"
+player-gui-remove-prefix-error: "%plugin-prefix% &cВаш префикс не может быть удален, так как у вас нет ни одного экипированного префикса"
+player-prefix-mode-no-int: "%plugin-prefix% &cВы не отправили допустимое сообщение или допустимое число, сообщение должно быть числом от 0 до 53"
+
+player-prefix-mode-error: "%plugin-prefix% &cВы отменили создание префикса"
+player-prefix-mode-guide: "%plugin-prefix% &aВведите номер слота, где будет находиться префикс в инвентаре от 0 до 53 или введите 'отмена', чтобы отменить создание префикса"
+
+player-setlanguage-succesfuly: "%plugin-prefix% &aЯзык %language% был установлен, по умолчанию: %default%"
+
+player-no-prefix: "%plugin-prefix% &cУ вас нет префикса"
+player-prefix: "%plugin-prefix% &aВаш префикс: %prefix-format%"

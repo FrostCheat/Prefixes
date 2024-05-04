@@ -1,0 +1,41 @@
+plugin-prefix: "&7[&cPräfixe&7]&r"
+
+no-permission-command-message: "%plugin-prefix% &cDu hast keine Berechtigung, diesen Befehl auszuführen"
+no-command-found: "%plugin-prefix% &cEs wurde kein Unterbefehl angegeben. Versuche es mit: /prefix help"
+plugin-reload: "%plugin-prefix% &cDu kannst keine Nachrichten senden, während die Präfixe geladen werden. Bitte warte einen Moment"
+plugin-reload-message: "%plugin-prefix% &aDu hast die Plugin-Konfiguration neu geladen. Bitte warte einige Sekunden, bis die Änderungen übernommen wurden"
+plugin-save-message: "%plugin-prefix% &aPräfixe und Sitzungen wurden erfolgreich gespeichert"
+
+prefix-already-exists: "%plugin-prefix% &cEin Präfix mit diesem Namen existiert bereits"
+prefix-max-characters-name: "%plugin-prefix% &cDer Präfixname darf nicht mehr als %max-characters-name% Zeichen enthalten"
+prefix-max-characters-format: "%plugin-prefix% &cDer Präfixname darf nicht mehr als %max-characters-format% Zeichen im Format enthalten"
+prefix-no-spaces-name: "%plugin-prefix% &cDer Präfixname darf keine Leerzeichen enthalten"
+prefix-no-spaces-format: "%plugin-prefix% &cDas Präfixformat darf keine Leerzeichen enthalten"
+prefix-succesfuly-created: "%plugin-prefix% &aDas Präfix wurde erfolgreich erstellt"
+
+prefix-set-no-player: "%plugin-prefix% &cDer Spieler ist dem Server nicht beigetreten, oder du hast den falschen Namen eingegeben"
+prefix-set-no-prefix-exists: "%plugin-prefix% &cDas Präfix %prefix-name% existiert nicht"
+prefix-set-succesfuly: "%plugin-prefix% &aDu hast das Präfix %prefix-name% an %player% vergeben"
+
+player-remove-succesfuly: "%plugin-prefix% &aDu hast gerade das Präfix %prefix-name% von %player% entfernt"
+player-remove-player-no-prefix: "%plugin-prefix% &cDer Spieler %player% hat kein Präfix"
+
+prefix-delete-no-exists: "%plugin-prefix% &cDas Präfix %prefix-name% existiert nicht"
+prefix-delete-succesfuly: "%plugin-prefix% &aDas Präfix %prefix-name% wurde gelöscht"
+
+player-sets-prefix-succesfuly: "%plugin-prefix% &aDu hast das Präfix %prefix% erfolgreich festgelegt"
+player-sets-prefix-no-permission: "%plugin-prefix% &cDu hast keine Berechtigung, dieses Präfix zu verwenden"
+
+player-spawnentity-prefix: "%plugin-prefix% &aDu hast das Entity-Präfix platziert"
+
+player-gui-remove-prefix-succesfuly: "%plugin-prefix% &aDu hast dein Präfix erfolgreich entfernt"
+player-gui-remove-prefix-error: "%plugin-prefix% &cDein Präfix konnte nicht entfernt werden, da du kein Präfix ausgerüstet hast"
+player-prefix-mode-no-int: "%plugin-prefix% &cDu hast keine gültige Nachricht oder gültige Zahl gesendet. Die Nachricht muss eine Zahl zwischen 0 und 53 sein"
+
+player-prefix-mode-error: "%plugin-prefix% &cDu hast die Erstellung des Präfixes abgebrochen"
+player-prefix-mode-guide: "%plugin-prefix% &aGib die Slotnummer ein, in der das Präfix im Inventar zwischen 0 und 53 sein wird, oder gib 'cancel' ein, um die Erstellung des Präfixes abzubrechen"
+
+player-setlanguage-succesfuly: "%plugin-prefix% &aDie Sprache %language% wurde festgelegt, Standard: %default%"
+
+player-no-prefix: "%plugin-prefix% &cDu hast kein Präfix"
+player-prefix: "%plugin-prefix% &aDein Präfix ist: %prefix-format%"

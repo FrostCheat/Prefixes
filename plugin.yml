@@ -1,5 +1,5 @@
 name: Prefixes
-version: 1.1.0
+version: 1.2.0
 main: frostcheat\prefixes\Prefixes
 author: FrostCheat
 website: http://www.aquamcpe.xyz/
@@ -20,4 +20,8 @@ permissions:
   prefixes.command.remove:
     default: op
   prefixes.command.delete:
+    default: op
+  prefixes.command.save:
+    default: op
+  prefixes.command.setlanguage:
     default: op

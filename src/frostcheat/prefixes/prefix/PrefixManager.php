@@ -6,12 +6,15 @@ use frostcheat\prefixes\Prefixes;
 use pocketmine\permission\DefaultPermissions;
 use pocketmine\permission\Permission;
 use pocketmine\permission\PermissionManager;
+use pocketmine\utils\SingletonTrait;
 
 class PrefixManager
 {
+    use SingletonTrait;
+
     private array $prefixes = [];
 
-    public function __construct()
+    public function load(): void
     {
         # Register prefixes
         foreach (Prefixes::getInstance()->getProvider()->getPrefixes() as $name => $data) {
@@ -48,7 +51,7 @@ class PrefixManager
 
     public function createPrefix(string $name, array $data): void
     {
-        $this->prefixes[$name] = new Prefix($name, $data);
+        $this->prefixes[strtolower($name)] = new Prefix($name, $data);
     }
 
     public function registerPermission(string $permission): void {

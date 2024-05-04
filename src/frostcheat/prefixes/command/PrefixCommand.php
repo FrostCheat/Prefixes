@@ -7,6 +7,8 @@ use frostcheat\prefixes\command\subcommands\DeleteSubCommand;
 use frostcheat\prefixes\command\subcommands\HelpSubCommand;
 use frostcheat\prefixes\command\subcommands\ReloadSubCommand;
 use frostcheat\prefixes\command\subcommands\RemoveSubCommand;
+use frostcheat\prefixes\command\subcommands\SaveSubCommand;
+use frostcheat\prefixes\command\subcommands\SetLanguageSubCommand;
 use frostcheat\prefixes\command\subcommands\SetSubCommand;
 use frostcheat\prefixes\libs\CortexPE\Commando\BaseCommand;
 use frostcheat\prefixes\Prefixes;
@@ -25,12 +27,14 @@ class PrefixCommand extends BaseCommand
 
     protected function prepare(): void
     {
-        $this->registerSubCommand(new ReloadSubCommand($this->plugin));
-        $this->registerSubCommand(new HelpSubCommand($this->plugin));
-        $this->registerSubCommand(new CreateSubCommand($this->plugin));
-        $this->registerSubCommand(new SetSubCommand($this->plugin));
-        $this->registerSubCommand(new RemoveSubCommand($this->plugin));
-        $this->registerSubCommand(new DeleteSubCommand($this->plugin));
+        $this->registerSubCommand(new ReloadSubCommand());
+        $this->registerSubCommand(new CreateSubCommand());
+        $this->registerSubCommand(new SetSubCommand());
+        $this->registerSubCommand(new RemoveSubCommand());
+        $this->registerSubCommand(new DeleteSubCommand());
+        $this->registerSubCommand(new SaveSubCommand());
+        $this->registerSubCommand(new SetLanguageSubCommand());
+        $this->registerSubCommand(new HelpSubCommand($this->getSubCommands()));
     }
 
     public function onRun(CommandSender $sender, string $aliasUsed, array $args): void

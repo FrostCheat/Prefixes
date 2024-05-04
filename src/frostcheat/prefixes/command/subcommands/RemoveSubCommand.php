@@ -7,17 +7,15 @@ use frostcheat\prefixes\libs\CortexPE\Commando\BaseSubCommand;
 use frostcheat\prefixes\Prefixes;
 use pocketmine\command\CommandSender;
 use pocketmine\player\Player;
-use pocketmine\plugin\Plugin;
 use pocketmine\Server;
 use pocketmine\utils\TextFormat;
 
 class RemoveSubCommand extends BaseSubCommand
 {
-    public function __construct(Plugin $plugin)
+    public function __construct()
     {
-        parent::__construct($plugin, "remove", "Remove prefix to user");
+        parent::__construct("remove", "Remove prefix to user");
         $this->setPermission("prefixes.command.remove");
-        $this->setPermissionMessage(TextFormat::colorize(str_replace("%plugin-prefix%", Prefixes::getInstance()->getProvider()->getMessages()->get("plugin-prefix"), Prefixes::getInstance()->getProvider()->getMessages()->get("no-permission-command-message"))));
     }
 
     /**
@@ -32,11 +30,21 @@ class RemoveSubCommand extends BaseSubCommand
     {
         $player = Server::getInstance()->getPlayerExact($args["playerName"]);
 
-        if ($player === null) {
+        if (!($player instanceof Player)) {
             $player = Server::getInstance()->getOfflinePlayer($args["playerName"]);
-        }
-
-        if (!$player->hasPlayedBefore()) {
+            if ($player !== null) {
+                foreach (Prefixes::getInstance()->getSessionManager()->getSessions() as $uuid => $data) {
+                    if (strtolower($player->getName()) === strtolower($data->getName())) {
+                        if ($data->getPrefix() === null) {
+                            $sender->sendMessage(TextFormat::colorize(str_replace(["%plugin-prefix%", "%player%"], [Prefixes::getInstance()->getProvider()->getMessages()->get("plugin-prefix"), $player->getName()], Prefixes::getInstance()->getProvider()->getMessages()->get("player-remove-player-no-prefix"))));
+                            return;
+                        }
+                        $sender->sendMessage(TextFormat::colorize(str_replace(["%prefix-name%","%plugin-prefix%", "%player%"], [$data->getPrefix(), Prefixes::getInstance()->getProvider()->getMessages()->get("plugin-prefix"), $player->getName()], Prefixes::getInstance()->getProvider()->getMessages()->get("player-remove-succesfuly"))));
+                        $data->setPrefix(null);
+                        return;
+                    }
+                }
+            }
             $sender->sendMessage(TextFormat::colorize(str_replace("%plugin-prefix%", Prefixes::getInstance()->getProvider()->getMessages()->get("plugin-prefix"), Prefixes::getInstance()->getProvider()->getMessages()->get("prefix-set-no-player"))));
             return;
         }
@@ -47,24 +55,9 @@ class RemoveSubCommand extends BaseSubCommand
                 $sender->sendMessage(TextFormat::colorize(str_replace(["%plugin-prefix%", "%player%"], [Prefixes::getInstance()->getProvider()->getMessages()->get("plugin-prefix"), $player->getName()], Prefixes::getInstance()->getProvider()->getMessages()->get("player-remove-player-no-prefix"))));
                 return;
             }
-        }
-
-        if ($player instanceof Player) {
-            $session = Prefixes::getInstance()->getSessionManager()->getSession((string)$player->getUniqueId());
-            if ($session !== null) {
-                $prefix = $session->getPrefix();
-                $session->setPrefix(null);
-                $sender->sendMessage(TextFormat::colorize(str_replace(["%plugin-prefix%", "%prefix-name%", "%player%"], [Prefixes::getInstance()->getProvider()->getMessages()->get("plugin-prefix"), $prefix, $player->getName()], Prefixes::getInstance()->getProvider()->getMessages()->get("player-remove-succesfuly"))));
-            }
-        } else {
-            foreach (Prefixes::getInstance()->getSessionManager()->getSessions() as $uuid => $data) {
-                if (strtolower($player->getName()) === strtolower($data["name"])) {
-                    $prefix = $data["prefix"];
-                    $data["prefix"] = null;
-                    $sender->sendMessage(TextFormat::colorize(str_replace(["%prefix-name%","%plugin-prefix%", "%player%"], [$prefix, Prefixes::getInstance()->getProvider()->getMessages()->get("plugin-prefix"), $player->getName()], Prefixes::getInstance()->getProvider()->getMessages()->get("player-remove-succesfuly"))));
-                    return;
-                }
-            }
+            $prefix = $session->getPrefix();
+            $session->setPrefix(null);
+            $sender->sendMessage(TextFormat::colorize(str_replace(["%plugin-prefix%", "%prefix-name%", "%player%"], [Prefixes::getInstance()->getProvider()->getMessages()->get("plugin-prefix"), $prefix, $player->getName()], Prefixes::getInstance()->getProvider()->getMessages()->get("player-remove-succesfuly"))));
         }
     }
 }

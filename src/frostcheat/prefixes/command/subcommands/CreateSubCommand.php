@@ -4,21 +4,17 @@ namespace frostcheat\prefixes\command\subcommands;
 
 use frostcheat\prefixes\libs\CortexPE\Commando\args\RawStringArgument;
 use frostcheat\prefixes\libs\CortexPE\Commando\BaseSubCommand;
-use frostcheat\prefixes\prefix\Prefix;
 use frostcheat\prefixes\Prefixes;
 use pocketmine\command\CommandSender;
-use pocketmine\plugin\Plugin;
 use pocketmine\utils\TextFormat;
 
 class CreateSubCommand extends BaseSubCommand
 {
 
-    public function __construct(Plugin $plugin)
+    public function __construct()
     {
-        parent::__construct($plugin, "create", "Create a prefix");
-        $this->setPermission("prefixes.command.create");
-        $this->setPermissionMessage(TextFormat::colorize(str_replace("%plugin-prefix%", Prefixes::getInstance()->getProvider()->getMessages()->get("plugin-prefix"), Prefixes::getInstance()->getProvider()->getMessages()->get("no-permission-command-message"))));
-    }
+        parent::__construct("create", "Create a prefix");
+        $this->setPermission("prefixes.command.create");}
 
     /**
      * @inheritDoc

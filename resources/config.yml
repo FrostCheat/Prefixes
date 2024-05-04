@@ -1,8 +1,12 @@
 # Don't touch this setting it may break the entire plugin
-config-version: 2
+config-version: 3
 
 prefix-max-characters-name: 10
 prefix-max-characters-format: 20
+
+# Default language used
+# Supported languages: en_us, es_es, fr_fr, gr_ge, pr_br, rs_rs
+default-language: en_us
 
 # If this option is "true" it means that you will use the RankSystem plugin to display the prefix.
 # If this option is "false" it means that you will use the chat format of this Plugin.

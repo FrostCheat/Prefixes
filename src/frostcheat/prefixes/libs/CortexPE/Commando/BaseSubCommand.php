@@ -29,22 +29,116 @@ declare(strict_types=1);
 
 namespace frostcheat\prefixes\libs\CortexPE\Commando;
 
-use pocketmine\command\CommandSender;
-use pocketmine\plugin\PluginBase;
-use function trim;
 
-abstract class BaseSubCommand extends BaseCommand{
+use frostcheat\prefixes\libs\CortexPE\Commando\constraint\BaseConstraint;
+use frostcheat\prefixes\libs\CortexPE\Commando\traits\ArgumentableTrait;
+use frostcheat\prefixes\libs\CortexPE\Commando\traits\IArgumentable;
+use pocketmine\command\CommandSender;
+use pocketmine\permission\PermissionManager;
+use pocketmine\plugin\Plugin;
+use function explode;
+
+abstract class BaseSubCommand implements IArgumentable, IRunnable {
+	use ArgumentableTrait;
+	/** @var string */
+	private string $name;
+	/** @var string[] */
+	private array $aliases;
+	/** @var string */
+	private string $description;
+	/** @var string */
+	protected string $usageMessage;
+	/** @var string[] */
+	private array $permission = [];
+	/** @var CommandSender */
+	protected CommandSender $currentSender;
 	/** @var BaseCommand */
 	protected BaseCommand $parent;
+	/** @var BaseConstraint[] */
+	private array $constraints = [];
 
-	public function __construct(PluginBase $plugin, string $name, string $description = "", array $aliases = []){
-		parent::__construct($plugin, $name, $description, $aliases);
+	public function __construct(string $name, string $description = "", array $aliases = []) {
+		$this->name = $name;
+		$this->description = $description;
+		$this->aliases = $aliases;
 
-		$this->usageMessage = "";
+		$this->prepare();
+
+		$this->usageMessage = $this->generateUsageMessage();
 	}
 
-	public function getParent(): BaseCommand {
-		return $this->parent;
+	abstract public function onRun(CommandSender $sender, string $aliasUsed, array $args): void;
+
+	/**
+	 * @return string
+	 */
+	public function getName(): string {
+		return $this->name;
+	}
+
+	/**
+	 * @return string[]
+	 */
+	public function getAliases(): array {
+		return $this->aliases;
+	}
+
+	/**
+	 * @return string
+	 */
+	public function getDescription(): string {
+		return $this->description;
+	}
+
+	/**
+	 * @return string
+	 */
+	public function getUsageMessage(): string {
+		return $this->usageMessage;
+	}
+
+	/**
+	 * @return string[]
+	 */
+	public function getPermissions(): array {
+		return $this->permission;
+	}
+
+	/**
+	 * @param string[] $permissions
+	 */
+	public function setPermissions(array $permissions) : void{
+		$permissionManager = PermissionManager::getInstance();
+		foreach($permissions as $perm){
+			if($permissionManager->getPermission($perm) === null){
+				throw new \InvalidArgumentException("Cannot use non-existing permission \"$perm\"");
+			}
+		}
+		$this->permission = $permissions;
+	}
+
+	public function setPermission(?string $permission) : void{
+		$this->setPermissions($permission === null ? [] : explode(";", $permission));
+	}
+
+	public function testPermissionSilent(CommandSender $target, ?string $permission = null) : bool{
+		$list = $permission !== null ? [$permission] : $this->permission;
+		foreach($list as $p){
+			if($target->hasPermission($p)){
+				return true;
+			}
+		}
+
+		return false;
+	}
+
+	/**
+	 * @param CommandSender $currentSender
+	 *
+	 * @internal Used to pass the current sender from the parent command
+	 */
+	public function setCurrentSender(CommandSender $currentSender): void {
+		$this->currentSender = $currentSender;
 	}
 
 	/**
@@ -56,30 +150,29 @@ abstract class BaseSubCommand extends BaseCommand{
 		$this->parent = $parent;
 	}
 
-	public function getUsage(): string{
-		if(empty($this->usageMessage)){
-			$parent = $this->parent;
-			$parentNames = "";
-
-			while($parent instanceof BaseSubCommand) {
-				$parentNames = $parent->getName() . $parentNames;
-				$parent = $parent->getParent();
-			}
-
-			if($parent instanceof BaseCommand){
-				$parentNames = $parent->getName() . " " . $parentNames;
-			}
-
-			$this->usageMessage = $this->generateUsageMessage(trim($parentNames));
-		}
-
-		return $this->usageMessage;
+	public function sendError(int $errorCode, array $args = []): void {
+		$this->parent->sendError($errorCode, $args);
 	}
 
-	public function testPermissionSilent(CommandSender $sender, ?string $permission = null): bool {
-		if($permission === null && count($this->getPermissions()) === 0) {
-			return true;
-		}
-		return parent::testPermissionSilent($sender, $permission);
+	public function sendUsage():void {
+		$this->currentSender->sendMessage("/{$this->parent->getName()} $this->usageMessage");
+	}
+
+    public function addConstraint(BaseConstraint $constraint) : void {
+        $this->constraints[] = $constraint;
+    }
+
+    /**
+     * @return BaseConstraint[]
+     */
+    public function getConstraints(): array {
+        return $this->constraints;
+    }
+
+	/**
+	 * @return Plugin
+	 */
+	public function getOwningPlugin(): Plugin {
+		return $this->parent->getOwningPlugin();
 	}
 }

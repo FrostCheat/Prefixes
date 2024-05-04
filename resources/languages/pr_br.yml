@@ -1,0 +1,41 @@
+plugin-prefix: "&7[&cPrefixos&7]&r"
+
+no-permission-command-message: "%plugin-prefix% &cVocê não tem permissão para executar este comando"
+no-command-found: "%plugin-prefix% &cNenhum subcomando fornecido, tente usar: /prefix help"
+plugin-reload: "%plugin-prefix% &cVocê não pode enviar mensagens enquanto os prefixos estão sendo carregados, aguarde um momento"
+plugin-reload-message: "%plugin-prefix% &aVocê recarregou a configuração do plugin, aguarde alguns segundos para que as alterações sejam aplicadas"
+plugin-save-message: "%plugin-prefix% &aPrefixos e sessões foram salvos corretamente"
+
+prefix-already-exists: "%plugin-prefix% &cJá existe um prefixo com este nome"
+prefix-max-characters-name: "%plugin-prefix% &cO nome do prefixo não pode conter mais de %max-characters-name% caracteres"
+prefix-max-characters-format: "%plugin-prefix% &cO formato do prefixo não pode conter mais de %max-characters-format% caracteres"
+prefix-no-spaces-name: "%plugin-prefix% &cO nome do prefixo não pode conter espaços"
+prefix-no-spaces-format: "%plugin-prefix% &cO formato do prefixo não pode conter espaços"
+prefix-succesfuly-created: "%plugin-prefix% &aO prefixo foi criado com sucesso"
+
+prefix-set-no-player: "%plugin-prefix% &cO jogador não entrou no servidor ou você digitou um nome incorreto"
+prefix-set-no-prefix-exists: "%plugin-prefix% &cO prefixo %prefix-name% não existe"
+prefix-set-succesfuly: "%plugin-prefix% &aVocê atribuiu o prefixo %prefix-name% a %player%"
+
+player-remove-succesfuly: "%plugin-prefix% &aVocê acabou de remover o prefixo %prefix-name% de %player%"
+player-remove-player-no-prefix: "%plugin-prefix% &cO jogador %player% não tem um prefixo"
+
+prefix-delete-no-exists: "%plugin-prefix% &cO prefixo %prefix-name% não existe"
+prefix-delete-succesfuly: "%plugin-prefix% &aO prefixo %prefix-name% foi deletado"
+
+player-sets-prefix-succesfuly: "%plugin-prefix% &aVocê definiu o prefixo %prefix% com sucesso"
+player-sets-prefix-no-permission: "%plugin-prefix% &cVocê não tem permissão para usar este prefixo"
+
+player-spawnentity-prefix: "%plugin-prefix% &aVocê colocou o prefixo de entidade"
+
+player-gui-remove-prefix-succesfuly: "%plugin-prefix% &aVocê removeu com sucesso o seu prefixo"
+player-gui-remove-prefix-error: "%plugin-prefix% &cSeu prefixo não pôde ser removido, pois você não tem nenhum prefixo equipado"
+player-prefix-mode-no-int: "%plugin-prefix% &cVocê não enviou uma mensagem válida ou um número válido, a mensagem deve ser um número entre 0-53"
+
+player-prefix-mode-error: "%plugin-prefix% &cVocê cancelou a criação do prefixo"
+player-prefix-mode-guide: "%plugin-prefix% &aDigite o número do slot onde o prefixo estará no inventário entre 0-53, ou digite 'cancel' para cancelar a criação do prefixo"
+
+player-setlanguage-succesfuly: "%plugin-prefix% &aO idioma %language% foi definido, padrão: %default%"
+
+player-no-prefix: "%plugin-prefix% &cVocê não tem nenhum prefixo"
+player-prefix: "%plugin-prefix% &aSeu prefixo é: %prefix-format%"
