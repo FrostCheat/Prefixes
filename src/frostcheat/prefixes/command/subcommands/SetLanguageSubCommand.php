@@ -32,6 +32,6 @@ class SetLanguageSubCommand extends BaseSubCommand
         $language = $args["language"];
 
         LanguageManager::getInstance()->setDefaultLanguage($language->getName());
-        $sender->sendMessage(TextFormat::colorize(str_replace(["%plugin-prefix%", "%language%", "%default%"], [Prefixes::getInstance()->getProvider()->getMessages()->get("plugin-prefix"), $language->getName(), (string)$default], Prefixes::getInstance()->getProvider()->getMessages()->get("player-setlanguage-succesfuly"))));
+        $sender->sendMessage(TextFormat::colorize(str_replace(["%plugin-prefix%", "%language%", "%default%"], [Prefixes::getInstance()->getProvider()->getMessages()->get("plugin-prefix"), $language->getName(), "true"], Prefixes::getInstance()->getProvider()->getMessages()->get("player-setlanguage-succesfuly"))));
     }
 }
