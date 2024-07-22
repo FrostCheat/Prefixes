@@ -28,12 +28,12 @@ class DeleteSubCommand extends BaseSubCommand
     {
         $prefixName = $args["prefixName"];
 
-        if (Prefixes::getInstance()->getPrefixManager()->getPrefix($prefixName) === null) {
+        if (Prefixes::getInstance()->getPrefixManager()->getPrefix($prefixName->getName()) === null) {
             $sender->sendMessage(TextFormat::colorize(str_replace(["%plugin-prefix%", "%prefix-name%"], [Prefixes::getInstance()->getProvider()->getMessages()->get("plugin-prefix"), $prefixName], Prefixes::getInstance()->getProvider()->getMessages()->get("prefix-delete-no-exists"))));
             return;
         }
 
-        Prefixes::getInstance()->getPrefixManager()->removePrefix($prefixName);
-        $sender->sendMessage(TextFormat::colorize(str_replace(["%plugin-prefix%", "%prefix-name%"], [Prefixes::getInstance()->getProvider()->getMessages()->get("plugin-prefix"), $prefixName], Prefixes::getInstance()->getProvider()->getMessages()->get("prefix-delete-succesfuly"))));
+        Prefixes::getInstance()->getPrefixManager()->removePrefix($prefixName->getName());
+        $sender->sendMessage(TextFormat::colorize(str_replace(["%plugin-prefix%", "%prefix-name%"], [Prefixes::getInstance()->getProvider()->getMessages()->get("plugin-prefix"), $prefixName->getName()], Prefixes::getInstance()->getProvider()->getMessages()->get("prefix-delete-succesfuly"))));
     }
 }

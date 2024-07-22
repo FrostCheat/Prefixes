@@ -49,6 +49,8 @@ class Prefixes extends PluginBase
         $this->getScheduler()->scheduleRepeatingTask(new ClosureTask(function (): void {
             $this->getProvider()->save();
         }), 300 * 20);
+        
+        $this->getSessionManager()->checkRankSystem();
 
         $this->unregisterCommands(["prefix", "prefixes"]);
         $this->registerListeners([new EventListener()]);

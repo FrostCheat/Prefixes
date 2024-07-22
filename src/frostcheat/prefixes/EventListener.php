@@ -57,12 +57,6 @@ class EventListener implements Listener
             }
             if ($session->getPrefix() !== null) {
                 $prefix = Prefixes::getInstance()->getPrefixManager()->getPrefix($session->getPrefix());
-                if ($prefix === null) {
-                    $player->sendMessage(TextFormat::colorize(str_replace("%plugin-prefix%", Prefixes::getInstance()->getProvider()->getMessages()->get("plugin-prefix"), Prefixes::getInstance()->getProvider()->getMessages()->get("player-no-prefix"))));
-                    $event->cancel();
-                    return;
-                }
-
                 if ($message === "%prefix%") {
                     $player->sendMessage(TextFormat::colorize(str_replace(["%prefix-format%", "%plugin-prefix%"], [$prefix->getFormat(), Prefixes::getInstance()->getProvider()->getMessages()->get("plugin-prefix")], Prefixes::getInstance()->getProvider()->getMessages()->get("player-prefix"))));
                     $event->cancel();
